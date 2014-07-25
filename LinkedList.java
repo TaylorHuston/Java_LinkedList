@@ -35,6 +35,15 @@ public class LinkedList<Item> {
     public String toString() {
         return data.toString();
         }
+    
+    private void deleteNode() {
+        if(this.prev != null) {
+            this.prev.next = this.next;
+        }
+        if(this.next != null) {
+            this.next.prev = this.prev;
+        }
+    }
     }
     
     //Adds node to end of list
@@ -52,10 +61,10 @@ public class LinkedList<Item> {
     
     //Removes node from end of list
     private void removeFromEnd() {
-        if(tail != null) {
+        if (tail != null) {
             tail = tail.prev;
-            tail.next = null;
-        }
+            tail.next.deleteNode();
+        }          
     }
     
     //Adds node to beginning of list
@@ -75,9 +84,11 @@ public class LinkedList<Item> {
     private void removeFromFront() {
         if(head != null) {
             head = head.next;
-            head.prev = null;
+            head.prev.deleteNode();
         }
     }
+
+    
     
     //Prints list from head to end
     private void printList() {
