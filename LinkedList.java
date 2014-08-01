@@ -4,6 +4,8 @@
  */
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 
 /**
  *
@@ -37,7 +39,7 @@ public class LinkedList<Item> implements Iterable<Item> {
             return data.toString();
         }
 
-        private void deleteNode() {
+        private void deleteNode() {  //Unnecessary?
             if (this.prev != null) {
                 this.prev.next = this.next;
             }
@@ -84,11 +86,14 @@ public class LinkedList<Item> implements Iterable<Item> {
     }
 
     //Removes node from end of list
-    private void removeFromFront() {
-        if (head != null) {
-            head = head.next;
-            head.prev.deleteNode();
-        }
+    private Item removeFromFront() {
+        if (isEmpty()) throw new NoSuchElementException("List empty");
+        
+        Item toReturn = head.data;
+        head = head.next;
+        head.prev.deleteNode();
+        
+        return toReturn;
     }
 
     //Prints list from head to end
