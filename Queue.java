@@ -8,18 +8,18 @@
  * @author Taylor
  */
 public class Queue {
-    LinkedList QueueList;
+    LinkedList<String> queueList;
     
     public Queue() {
-        QueueList = new LinkedList();
+        queueList = new LinkedList();
     }
     
     private void enqueue(String toAdd) {
-        QueueList.addToFront(toAdd);
+        queueList.addToFront(toAdd);
     }
     
     private String dequeue() {
-        return (String) QueueList.removeFromEnd();
+        return queueList.removeFromEnd();
     }
     
     public static void main(String[] args) {

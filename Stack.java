@@ -8,18 +8,18 @@
  * @author Taylor
  */
 public class Stack {
-    LinkedList StackList;
+    LinkedList<String> stackList;
     
     public Stack() {
-        StackList = new LinkedList();
+        stackList = new LinkedList();
     }
     
     private void push(String toAdd) {
-        StackList.addToEnd(toAdd);
+        stackList.addToEnd(toAdd);
     }
     
     private String pop() {
-        return (String) StackList.removeFromEnd();
+        return stackList.removeFromEnd();
     }
     
     public static void main(String[] args) {

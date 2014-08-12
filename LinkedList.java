@@ -13,18 +13,16 @@ public class LinkedList<Item> implements Iterable<Item> {
 
     private String name;  //Holds the name of the list, if applicable
     private Node head;
-    private Node tail = head;
-
-    //Constructor with name
-    public LinkedList(String name) {
-        this.name = name;
-        head = null;
-        tail = head;
-    }
+    private Node tail;
 
     //Constructor without name
     public LinkedList() {
-        this.name = "N/A";
+        this("N/A");
+    }
+    
+    //Constructor with name
+    public LinkedList(String name) {
+        this.name = name;
         head = null;
         tail = head;
     }
