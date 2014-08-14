@@ -1,14 +1,11 @@
 /*
- Linked List Implementation
- Based on Algorithms, 4th Edition, Section 1.3
+ Linked List Implementation, based on Section 1.3 of
+<a href="http://algs4.cs.princeton.edu/home/">Algorithms, 4th Edition - Robert Sedgewick | Kevine Wayne</a>
  */
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-/**
- *
- * @author Taylor
- */
+
 public class LinkedList<Item> implements Iterable<Item> {
 
     private String name;  //Holds the name of the list, if applicable

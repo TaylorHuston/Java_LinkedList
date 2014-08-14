@@ -1,11 +1,6 @@
 /*
- Linked List Queue Implementation
- Based on Algorithms, 4th Edition, Section 1.3
- */
-
-/**
- *
- * @author Taylor
+ Linked List Implementation, based on Section 1.3 of
+<a href="http://algs4.cs.princeton.edu/home/">Algorithms, 4th Edition - Robert Sedgewick | Kevine Wayne</a>
  */
 public class Queue {
     LinkedList<String> queueList;
