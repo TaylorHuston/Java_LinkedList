@@ -1,5 +1,5 @@
 /*
- Linked List Stack Implementation
+ Linked List Queue Implementation
  Based on Algorithms, 4th Edition, Section 1.3
  */
 
