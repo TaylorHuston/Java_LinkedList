@@ -29,9 +29,9 @@ public class LinkedList<Item> implements Iterable<Item> {
     private class Node {
 
         //The generic data the nodes contain
-        Item data;  
-        Node next;
-        Node prev;
+        private Item data;  
+        private Node next;
+        private Node prev;
         
         //Node constructor
         public Node(Item newData) {
@@ -84,7 +84,7 @@ public class LinkedList<Item> implements Iterable<Item> {
         
         Item toReturn = tail.data;
         
-        if(tail != head) {  //If there's more then one node left
+        if (tail != head) {  //If there's more then one node left
             tail = tail.prev;
             tail.next = null;
         } else {  //Remove the last node
@@ -144,7 +144,7 @@ public class LinkedList<Item> implements Iterable<Item> {
         } //End hasNext
 
         //Not implemented
-        public void remove() {}
+        public void remove() { }
 
         public Item next() {
             Item data = curr.data;
@@ -186,7 +186,7 @@ public class LinkedList<Item> implements Iterable<Item> {
     
     static void printLL(LinkedList testLL) {
         Iterator testIterator = testLL.iterator();
-        while(testIterator.hasNext()) {
+        while (testIterator.hasNext()) {
             Object toPrint = testIterator.next();
             StdOut.print(toPrint.toString() + " ");
         }

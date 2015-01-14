@@ -5,7 +5,8 @@ Based on Section 1.3 of Algorithms, 4th Edition
 
 public class Queue {
     
-    LinkedList<String> queueList;
+    //LinkedList that holds the Queue
+    private LinkedList<String> queueList;
     
     //Constructor
     public Queue() {

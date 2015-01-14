@@ -5,11 +5,12 @@ Based on Section 1.3 of Algorithms, 4th Edition
 
 public class Stack {
     
-    LinkedList<String> stackList;
+    //LinkedList that holds the Stack
+    private LinkedList<String> stackList;
     
     //Constructor
     public Stack() {
-        stackList = new LinkedList();
+       stackList = new LinkedList();
     } //End Constructor
     
     //Add to top of stack
@@ -22,6 +23,7 @@ public class Stack {
         return stackList.removeFromEnd();
     } //End pop
     
+    //Test client for Stack
     public static void main(String[] args) {
 
         Stack myStack = new Stack();
