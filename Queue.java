@@ -4,14 +4,13 @@ Based on Section 1.3 of Algorithms, 4th Edition
 */
 
 public class Queue {
-    
     //LinkedList that holds the Queue
     private LinkedList<String> queueList;
     
     //Constructor
     public Queue() {
         queueList = new LinkedList();
-    } //End Constructor
+    }
     
     //Adds item to front of queue
     private void enqueue(String toAdd) {
@@ -29,10 +28,10 @@ public class Queue {
         
         myQueue.enqueue("Test");
         myQueue.enqueue("Test2");
-        StdOut.println(myQueue.dequeue());
-        StdOut.println(myQueue.dequeue());
+        StdOut.println(myQueue.dequeue());  //Test
+        StdOut.println(myQueue.dequeue());  //Test2
         myQueue.enqueue("Test3");
-        StdOut.println(myQueue.dequeue());
+        StdOut.println(myQueue.dequeue());  //Test3
         
-    } //End main
-} //End Queue
+    }
+}

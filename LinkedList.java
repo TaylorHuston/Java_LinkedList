@@ -6,39 +6,39 @@ Based on Section 1.3 of Algorithms, 4th Edition
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedList<Item> implements Iterable<Item> {
+public class LinkedList<T> implements Iterable<T> {
 
     //Holds the name of the list, if applicable
     private String name;  
     private Node head;
     private Node tail;
 
-    //Constructor without name
+    //Constructors
     public LinkedList() {
         this("N/A");
-    } //End Constructor
+    }
     
     //Constructor with name
     public LinkedList(String name) {
         this.name = name;
         head = null;
         tail = head;
-    } //End one-arguement Constructor
+    }
     
     //The nodes for the list
     private class Node {
-
         //The generic data the nodes contain
-        private Item data;  
+        private T data;
+
         private Node next;
         private Node prev;
         
-        //Node constructor
-        public Node(Item newData) {
+        //Constructor
+        public Node(T newData) {
             data = newData;
             next = null;
             prev = null;
-        } //End Constructor
+        }
 
         @Override
         //toString method
@@ -54,18 +54,16 @@ public class LinkedList<Item> implements Iterable<Item> {
             if (this.next != null) {
                 this.next.prev = this.prev;
             }
-        } //End deleteNode
-    } //End Node
+        }
+    }
 
     //Checks if the list is empty
     private boolean isEmpty() {
         return head == null;
-    } //End isEmpty
+    }
     
-    //Adds node to end of list, for a push
-    public void addToEnd(Item newData) {
-        
-        //If it's the first (or all of the nodes have been removed)
+    //Adds node to end of list
+    public void addToEnd(T newData) {
         if (isEmpty()) {  
             head = new Node(newData);
             tail = head;
@@ -74,30 +72,30 @@ public class LinkedList<Item> implements Iterable<Item> {
             tail.next.prev = tail;
             tail = tail.next;
         }
-    } //End addToEnd
+    }
 
-    //Removes node from end of list, for a pop or dequeue
-    public Item removeFromEnd() {
-        
+    //Removes node from end of list
+    public T removeFromEnd() {
         //Trying to remove when there's no nodes left
-        if (isEmpty()) throw new NoSuchElementException("List empty"); 
-        
-        Item toReturn = tail.data;
-        
-        if (tail != head) {  //If there's more then one node left
-            tail = tail.prev;
-            tail.next = null;
-        } else {  //Remove the last node
-            tail = head = null;
+        if (isEmpty()) {
+            throw new NoSuchElementException("List empty");
         }
         
+        T toReturn = tail.data;
+
+        if (tail == head) {
+            tail = null;
+            head = null;
+        } else {
+            tail = tail.prev;
+            tail.next = null;
+        }
+
         return toReturn;
-    } //End removeFromEnd
+    }
 
     //Adds node to beginning of list, for a queue
-    public void addToFront(Item newData) {
-        
-        //If it's the first (or all of the nodes have been removed)
+    public void addToFront(T newData) {
         if (isEmpty()) {  
             head = new Node(newData);
             tail = head;
@@ -109,55 +107,70 @@ public class LinkedList<Item> implements Iterable<Item> {
     }
 
     //Removes node from end of list
-    public Item removeFromFront() {
-        
-        //Trying to remove when there's no nodes left
-        if (isEmpty()) throw new NoSuchElementException("List empty"); 
-        
-        Item toReturn = head.data;
-        head = head.next;
-        head.prev.deleteNode();
+    public T removeFromFront()  {
+        if (isEmpty()) {
+            throw new NoSuchElementException("List empty");
+        }
+
+        T toReturn = head.data;
+
+        if (tail == head) {
+            tail = null;
+            head = null;
+        } else {
+            head = head.next;
+            head.prev = null;
+        }
         
         return toReturn;
-    } //End removeFromFront
+    }
 
-    //Prints list from head to end
-    public void printList() {
-        Node currPos = head;
-        while (currPos != null) {
-            StdOut.print(currPos + " ");
-            currPos = currPos.next;
-        }
-    } //End printList
+//    //Prints list from head to end
+//    public void printList() {
+//        Node current = head;
+//        while (current != null) {
+//            StdOut.print(current + " ");
+//            current = current.next;
+//        }
+//    } //End printList
 
     //Iterable methods
-    public Iterator<Item> iterator() {
+    public Iterator<T> iterator() {
         return new ListIterator();
-    } //End iterator
+    }
 
-    private class ListIterator implements Iterator<Item> {
+    private class ListIterator implements Iterator<T> {
 
         private Node curr = head;
 
         public boolean hasNext() {
             return curr != null;
-        } //End hasNext
+        }
 
-        //Not implemented
-        public void remove() { }
-
-        public Item next() {
-            Item data = curr.data;
+        public T next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            T data = curr.data;
             curr = curr.next;
             return data;
-        } //End next
+        }
+
+        //Not implemented
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+
     } //End ListIterator
     
-    
-    
+
     //Test client
     public static void main(String[] args) {
         LinkedList<Integer> testLL = new LinkedList<Integer>("Test");
+
+        testLL.addToFront(10);
+        testLL.removeFromEnd();
+        printLL(testLL);  //List empty
 
         testLL.addToEnd(3); 
         testLL.addToEnd(4); 
@@ -182,14 +195,19 @@ public class LinkedList<Item> implements Iterable<Item> {
             + e.getMessage());
         }
 
-    } //End main
+    }
     
     static void printLL(LinkedList testLL) {
+        if (testLL.isEmpty()) {
+            StdOut.println("List empty");
+            return;
+        }
+
         Iterator testIterator = testLL.iterator();
         while (testIterator.hasNext()) {
             Object toPrint = testIterator.next();
             StdOut.print(toPrint.toString() + " ");
         }
         StdOut.println();
-    } //End printLL
-} //End LinkedList
+    }
+}
