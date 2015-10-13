@@ -1,4 +1,5 @@
 #Linked List, Stack and Queue
+MOVED TO: <a href="https://github.com/TaylorHuston/Java_AlgorithmsDS">https://github.com/TaylorHuston/Java_AlgorithmsDS</a>
 
 Basic LL Implementation
 
